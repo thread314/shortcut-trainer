@@ -4,8 +4,6 @@
   (interactive)
   (floor (/ (float-time (current-time)) 86400)))
 
-(setq shortcut-trainer-file "~/.emacs.d/git/shortcut-trainer/shortcut-list.el")
-
 (defun shortcut-trainer-write-to-file (shortcut-list)
   (interactive)
   (with-temp-file shortcut-trainer-file
@@ -56,8 +54,6 @@
           (nth 2 shortcut)
           (nth 3 shortcut))))
 
-(shortcut-trainer-read-from-file shortcut-trainer-file)
-
 (defun shortcut-trainer-drill ()
   (interactive)
   (shortcut-trainer-write-to-file 
@@ -91,8 +87,8 @@
       (progn
         (add-to-list 'new-shortcut (floor (log (string-to-number (nth 3 old-shortcut)) 2)) t)
         ))
-  (write-region (concat (format "%s" new-shortcut) "\n") nil shortcut-trainer-file 'append)
+  (write-region (concat (format "%s" new-shortcut) "\n") nil shortcut-trainer-file 'append))
 
-  ;; (write-region "append\n" nil shortcut-trainer-file 'append)
-  )
+(provide 'shortcut-trainer)
+
 
